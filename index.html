@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Enlvis_</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#050505;
+    color:white;
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+}
+
+/* NAVBAR */
+
+nav{
+    position:fixed;
+    top:12px;
+    left:12px;
+    right:12px;
+
+    height:64px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 25px;
+
+    background:rgba(0,0,0,.65);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:16px;
+
+    z-index:100;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo-circle{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:white;
+}
+
+.logo span{
+    font-size:20px;
+    font-weight:600;
+}
+
+.nav-links{
+    display:flex;
+    gap:40px;
+}
+
+.nav-links a{
+    color:#9a9a9a;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:white;
+}
+
+.signin{
+    padding:12px 18px;
+
+    border:none;
+    border-radius:12px;
+
+    background:#161616;
+    color:white;
+
+    cursor:pointer;
+}
+
+/* HERO */
+
+.hero{
+    position:relative;
+
+    width:100%;
+    height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    overflow:hidden;
+}
+
+/* SPOTLIGHT */
+
+.spotlight{
+    position:absolute;
+
+    width:900px;
+    height:900px;
+
+    top:-300px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    background:
+    radial-gradient(
+    circle,
+    rgba(255,255,255,.15) 0%,
+    rgba(255,255,255,.03) 35%,
+    transparent 70%
+    );
+
+    filter:blur(80px);
+
+    animation:pulse 8s infinite ease-in-out;
+}
+
+@keyframes pulse{
+
+    0%{
+        transform:translateX(-50%) scale(1);
+    }
+
+    50%{
+        transform:translateX(-50%) scale(1.15);
+    }
+
+    100%{
+        transform:translateX(-50%) scale(1);
+    }
+}
+
+/* NOISE */
+
+.noise{
+    position:absolute;
+    inset:0;
+
+    opacity:.08;
+
+    background-image:
+    radial-gradient(
+    rgba(255,255,255,.8) 0.5px,
+    transparent 0.5px
+    );
+
+    background-size:4px 4px;
+
+    animation:noiseMove .3s infinite;
+}
+
+@keyframes noiseMove{
+
+    0%{
+        transform:translate(0,0);
+    }
+
+    25%{
+        transform:translate(-1px,1px);
+    }
+
+    50%{
+        transform:translate(1px,-1px);
+    }
+
+    75%{
+        transform:translate(2px,1px);
+    }
+
+    100%{
+        transform:translate(0,0);
+    }
+}
+
+/* CONTENT */
+
+.content{
+    position:relative;
+    z-index:10;
+    text-align:center;
+}
+
+.content h1{
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:clamp(80px,12vw,180px);
+
+    font-weight:600;
+
+    line-height:1;
+}
+
+.content p{
+    margin-top:25px;
+
+    color:#b0b0b0;
+
+    font-size:28px;
+    font-weight:300;
+}
+
+.scroll-indicator{
+    position:absolute;
+    bottom:40px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    color:#666;
+
+    animation:bounce 2s infinite;
+}
+
+@keyframes bounce{
+
+    0%,100%{
+        transform:translateX(-50%) translateY(0);
+    }
+
+    50%{
+        transform:translateX(-50%) translateY(10px);
+    }
+}
+
+@media(max-width:900px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .content p{
+        font-size:20px;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+
+    <div class="logo">
+        <div class="logo-circle"></div>
+        <span>Enlvis_</span>
+    </div>
+
+    <div class="nav-links">
+        <a href="#">Github</a>
+        <a href="#">X</a>
+        <a href="#">Linkedin</a>
+    </div>
+
+</nav>
+
+<section class="hero">
+
+    <div class="spotlight"></div>
+
+    <div class="noise"></div>
+
+    <div class="content">
+        <h1>Envlsi_</h1>
+        <p>Products for people.</p>
+    </div>
+
+    <div class="scroll-indicator">
+        x
+    </div>
+
+</section>
+
+<script>
+
+/* Mouse spotlight */
+
+const spotlight = document.querySelector(".spotlight");
+
+document.addEventListener("mousemove",(e)=>{
+
+    const x = e.clientX / window.innerWidth;
+    const move = (x - 0.5) * 120;
+
+    spotlight.style.left =
+        `calc(50% + ${move}px)`;
+
+});
+
+</script>
+
+</body>
+</html>
